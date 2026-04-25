@@ -1,364 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CDK Approval Weapon V3</title>
+<title>CDK Approval Weapon V4</title>
+
 <style>
-:root{
-  --bg:#050607;--panel:#101317;--panel2:#171b21;--line:#2b313a;
-  --text:#f4f7fb;--muted:#9ca8b6;--green:#30d158;--yellow:#ffd60a;
-  --orange:#ff9f0a;--red:#ff453a;--blue:#0a84ff;
-}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,#18202b 0%,#050607 42%);color:var(--text);font-family:Arial,Helvetica,sans-serif}
-.app{max-width:1600px;margin:auto;padding:16px}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
-.logo{font-size:24px;font-weight:900;letter-spacing:1px}
-.badge{background:#0b2f55;color:#9ed0ff;padding:8px 12px;border-radius:999px;font-size:13px;border:1px solid #164a7d}
-.monitor{background:#07090c;border:2px solid #29313b;border-radius:18px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.65)}
-.topbar{background:#1b2027;border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;color:#c8d3df;font-size:13px;margin-bottom:14px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.card{background:linear-gradient(180deg,var(--panel),#0a0d11);border:1px solid var(--line);border-radius:14px;padding:16px}
-.card h2{margin:0 0 14px;font-size:18px;border-bottom:1px solid var(--line);padding-bottom:10px}
-.row{display:grid;grid-template-columns:1fr 170px;gap:10px;align-items:center;margin-bottom:10px}
-label{color:#cbd5e1;font-size:14px}
-input,select,textarea{width:100%;background:#05070a;border:1px solid #343b46;color:white;padding:11px;border-radius:8px;font-size:15px}
-input{text-align:right}
-textarea{min-height:90px;resize:vertical}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 2px rgba(10,132,255,.25)}
-.total{background:#141a22;border:1px solid #38424f;border-radius:10px;padding:12px;margin:14px 0}
-.total-line{display:flex;justify-content:space-between;font-size:16px;margin:8px 0;gap:10px}
-.big{font-size:38px;font-weight:900}
-.metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
-.metric-title{color:var(--muted);font-size:13px;margin-bottom:6px}
-.status{padding:14px;border-radius:12px;font-weight:900;text-align:center;margin-top:12px;font-size:20px}
-.green{color:var(--green)}.yellow{color:var(--yellow)}.orange{color:var(--orange)}.red{color:var(--red)}
-.status.green{background:rgba(48,209,88,.12);border:1px solid var(--green)}
-.status.yellow{background:rgba(255,214,10,.12);border:1px solid var(--yellow)}
-.status.orange{background:rgba(255,159,10,.12);border:1px solid var(--orange)}
-.status.red{background:rgba(255,69,58,.12);border:1px solid var(--red)}
-.reco{background:#080b0f;border:1px dashed #3b4654;border-radius:12px;padding:14px;color:#d8e2ed;line-height:1.45;margin-top:12px}
-.buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
-button{border:1px solid #334155;background:#111827;color:#e5edf7;border-radius:10px;padding:11px;font-weight:800;cursor:pointer}
-button:hover{background:#182231}
-button.primary{background:#0b2f55;border-color:#1e6fb8}
-button.danger{background:#3b1111;border-color:#7f1d1d}
-.lenderBox{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
-.lender{background:#080b0f;border:1px solid #344052;border-radius:12px;padding:12px}
-.lender strong{display:block;font-size:16px;margin-bottom:6px}
-.score{font-size:28px;font-weight:900}
-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
-th,td{border-bottom:1px solid #26313d;padding:8px;text-align:left}
-th{color:#9ed0ff}
-.small{font-size:12px;color:var(--muted)}
-.footer{color:#7d8794;font-size:12px;margin-top:12px;text-align:center}
-@media(max-width:950px){
-  .grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}
-  .buttons{grid-template-columns:1fr 1fr}.lenderBox{grid-template-columns:1fr}.big{font-size:32px}
-}
+body{margin:0;font-family:Arial;background:#050607;color:#fff}
+.container{padding:15px;max-width:1400px;margin:auto}
+.tabs{display:flex;gap:10px;margin-bottom:15px}
+.tab{padding:10px 15px;border:1px solid #333;cursor:pointer}
+.active{background:#0a84ff}
+.card{background:#111;padding:15px;border:1px solid #333;margin-bottom:15px}
+input,select{width:100%;padding:8px;margin-top:5px;background:#000;color:#fff;border:1px solid #444}
+.row{display:grid;grid-template-columns:1fr 150px;gap:10px;margin-bottom:10px}
+button{padding:10px;background:#0a84ff;border:none;color:white;cursor:pointer;margin-top:10px}
+.hidden{display:none}
+.big{font-size:28px;font-weight:bold}
 </style>
 </head>
+
 <body>
-<div class="app">
-  <div class="header">
-    <div class="logo">CDK APPROVAL WEAPON V3</div>
-    <div class="badge">EDITABLE LENDER DB / SAVE / EXPORT</div>
-  </div>
+<div class="container">
 
-  <div class="monitor">
-    <div class="topbar">
-      <div>CDK Reflections Style View</div>
-      <div>Deal Structure + Lender Approval Engine</div>
-    </div>
+<div class="tabs">
+<div class="tab active" onclick="showTab('structure')">Structure</div>
+<div class="tab" onclick="showTab('analysis')">Analysis</div>
+<div class="tab" onclick="showTab('lenders')">Lenders</div>
+<div class="tab" onclick="showTab('recap')">Recap</div>
+</div>
 
-    <div class="grid">
-      <div class="card">
-        <h2>P SCREEN — DEAL STRUCTURE</h2>
-        <div class="row"><label>Customer / Deal Name</label><input id="dealName" value="Sample Deal"></div>
-        <div class="row"><label>Credit Score</label><input id="score" value="680"></div>
-        <div class="row"><label>Book Value / Clean Retail</label><input id="book" value="25000"></div>
-        <div class="row"><label>Selling Price</label><input id="sell" value="27995"></div>
-        <div class="row"><label>Fees Amount</label><input id="fees" value="1200"></div>
-        <div class="row"><label>Rebate / Discount</label><input id="rebate" value="1500"></div>
-        <div class="row"><label>Cash Down</label><input id="cash" value="2000"></div>
-        <div class="row"><label>Trade Equity</label><input id="equity" value="0"></div>
-        <div class="row"><label>Negative Equity</label><input id="neg" value="3000"></div>
-        <div class="row"><label>Backend Products</label><input id="backend" value="4200"></div>
-        <div class="row"><label>Term</label><input id="term" value="72"></div>
-        <div class="row"><label>Mileage</label><input id="miles" value="35000"></div>
-        <div class="row"><label>Monthly Income</label><input id="income" value="6500"></div>
-        <div class="row"><label>Total Monthly Debt</label><input id="debt" value="1800"></div>
-        <div class="row"><label>Estimated Payment</label><input id="payment" value="543"></div>
+<!-- STRUCTURE -->
+<div id="structure" class="card">
+<h3>Deal Structure</h3>
 
-        <div class="total">
-          <div class="total-line"><span>Adjusted Price</span><strong id="adjusted">$0</strong></div>
-          <div class="total-line"><span>Front-End Amount</span><strong id="frontendAmt">$0</strong></div>
-          <div class="total-line"><span>Total Amount Financed</span><strong id="totalAmt">$0</strong></div>
-          <div class="total-line"><span>PTI</span><strong id="pti">0%</strong></div>
-          <div class="total-line"><span>DTI</span><strong id="dti">0%</strong></div>
-        </div>
+<div class="row"><label>Book Value</label><input id="book" value="25000"></div>
+<div class="row"><label>Selling Price</label><input id="sell" value="28000"></div>
+<div class="row"><label>Fees</label><input id="fees" value="1200"></div>
+<div class="row"><label>Rebate</label><input id="rebate" value="1500"></div>
+<div class="row"><label>Cash</label><input id="cash" value="2000"></div>
+<div class="row"><label>Negative Equity</label><input id="neg" value="3000"></div>
+<div class="row"><label>Backend</label><input id="backend" value="4000"></div>
 
-        <div class="buttons">
-          <button onclick="change('backend',-500)">-$500 Backend</button>
-          <button onclick="change('cash',1000)">+$1,000 Cash</button>
-          <button onclick="change('neg',-1000)">-$1,000 Neg Eq</button>
-          <button class="primary" onclick="bestStructure()">Best Structure</button>
-        </div>
-      </div>
+<div class="row"><label>Target Lender</label>
+<select id="target"></select></div>
 
-      <div class="card">
-        <h2>G SCREEN — LIVE LTV INTELLIGENCE</h2>
-        <div class="metric"><div class="metric-title">Front-End LTV</div><div class="big" id="feLtv">0%</div></div>
-        <div class="metric"><div class="metric-title">Total LTV</div><div class="big" id="totalLtv">0%</div></div>
-        <div class="metric"><div class="metric-title">Backend Load</div><div id="backendLoad">0%</div></div>
-        <div class="metric"><div class="metric-title">Negative Equity Load</div><div id="negLoad">0%</div></div>
-        <div id="status" class="status green">CLEAN</div>
-        <div class="reco" id="reco">Structure looks good.</div>
-      </div>
+<button onclick="calc()">Update</button>
+</div>
 
-      <div class="card">
-        <h2>LENDER MATCH — APPROVAL RANKING</h2>
-        <div class="lenderBox">
-          <div class="lender"><strong>Best Lender</strong><div id="bestName">-</div><div class="score" id="bestScore">0</div></div>
-          <div class="lender"><strong>Backup</strong><div id="backupName">-</div><div class="score" id="backupScore">0</div></div>
-          <div class="lender"><strong>Avoid</strong><div id="avoidName">-</div><div class="score" id="avoidScore">0</div></div>
-        </div>
-        <div class="reco" id="lenderNotes"></div>
-        <table id="rankTable"></table>
-      </div>
+<!-- ANALYSIS -->
+<div id="analysis" class="card hidden">
+<h3>Analysis</h3>
+<div>Front-End LTV: <span id="feLtv" class="big"></span></div>
+<div>Total LTV: <span id="totalLtv" class="big"></span></div>
+<div>Backend Room: <span id="backendRoom"></span></div>
+<div>Cash Needed: <span id="cashNeeded"></span></div>
+<button onclick="structureDeal()">Structure This Deal</button>
+</div>
 
-      <div class="card">
-        <h2>APPROVAL NOTES / EXPORT RECAP</h2>
-        <div class="reco" id="approvalNotes"></div>
-        <textarea id="manualNotes" placeholder="Add notes: stips, POI, POR, book call, lender contact, analyst notes..."></textarea>
-        <div class="buttons">
-          <button class="primary" onclick="copyRecap()">Copy Recap</button>
-          <button onclick="downloadRecap()">Download Recap</button>
-          <button onclick="saveDeal()">Save Deal</button>
-          <button onclick="loadDeal()">Load Deal</button>
-        </div>
-        <p class="small">Save/load uses this browser only.</p>
-      </div>
+<!-- LENDERS -->
+<div id="lenders" class="card hidden">
+<h3>Lender Database</h3>
+<div id="lenderList"></div>
+</div>
 
-      <div class="card">
-        <h2>EDIT LENDER DATABASE</h2>
-        <div class="row"><label>Lender</label><select id="lenderSelect" onchange="loadLenderForm()"></select></div>
-        <div class="row"><label>Name</label><input id="l_name"></div>
-        <div class="row"><label>Max Front-End LTV %</label><input id="l_maxFe"></div>
-        <div class="row"><label>Max Total LTV %</label><input id="l_maxTotal"></div>
-        <div class="row"><label>Max Backend $</label><input id="l_maxBackend"></div>
-        <div class="row"><label>Max Term</label><input id="l_maxTerm"></div>
-        <div class="row"><label>Max Mileage</label><input id="l_maxMiles"></div>
-        <div class="row"><label>Minimum Score</label><input id="l_minScore"></div>
-        <div class="row"><label>Max PTI %</label><input id="l_maxPti"></div>
-        <div class="row"><label>Max DTI %</label><input id="l_maxDti"></div>
-        <div class="row"><label>Aggression</label><input id="l_aggression"></div>
-        <div class="buttons">
-          <button class="primary" onclick="saveLender()">Save Lender</button>
-          <button onclick="addLender()">Add New</button>
-          <button class="danger" onclick="deleteLender()">Delete</button>
-          <button onclick="resetLenders()">Reset DB</button>
-        </div>
-      </div>
+<!-- RECAP -->
+<div id="recap" class="card hidden">
+<h3>Deal Recap</h3>
+<textarea id="recapBox" style="width:100%;height:200px"></textarea>
+<button onclick="copyRecap()">Copy</button>
+</div>
 
-      <div class="card">
-        <h2>DATABASE NOTES</h2>
-        <div class="reco">
-          V3 now lets you edit lender caps and saves them in your browser.  
-          Replace the starter values with your actual bank guidelines as you collect them.
-          <br><br>
-          Most important fields to make accurate first:
-          <br>• Max Front-End LTV
-          <br>• Max Total LTV
-          <br>• Backend cap
-          <br>• Min score
-          <br>• PTI / DTI
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">V3 — editable lender database, saved deals, export recap, live lender ranking.</div>
 </div>
 
 <script>
-const defaultLenders=[
-{name:"Capital One",maxFe:120,maxTotal:135,maxBackend:5500,maxTerm:75,maxMiles:125000,minScore:600,maxPti:18,maxDti:55,aggression:"High"},
-{name:"Ally",maxFe:115,maxTotal:130,maxBackend:5000,maxTerm:75,maxMiles:120000,minScore:620,maxPti:17,maxDti:50,aggression:"Medium-High"},
-{name:"Chase",maxFe:110,maxTotal:125,maxBackend:4500,maxTerm:72,maxMiles:100000,minScore:660,maxPti:15,maxDti:45,aggression:"Medium"},
-{name:"Wells Fargo",maxFe:115,maxTotal:128,maxBackend:4500,maxTerm:72,maxMiles:110000,minScore:640,maxPti:16,maxDti:50,aggression:"Medium"},
-{name:"Santander",maxFe:125,maxTotal:140,maxBackend:5000,maxTerm:75,maxMiles:130000,minScore:580,maxPti:20,maxDti:60,aggression:"Very High"},
-{name:"Exeter",maxFe:125,maxTotal:140,maxBackend:4500,maxTerm:72,maxMiles:130000,minScore:560,maxPti:20,maxDti:60,aggression:"Very High"},
-{name:"UW Credit Union",maxFe:105,maxTotal:120,maxBackend:3500,maxTerm:72,maxMiles:100000,minScore:680,maxPti:14,maxDti:42,aggression:"Conservative"},
-{name:"Associated Bank",maxFe:110,maxTotal:125,maxBackend:4000,maxTerm:72,maxMiles:100000,minScore:660,maxPti:15,maxDti:45,aggression:"Medium"}
+let lenders=[
+{name:"CapOne",maxFe:120,maxTotal:135,maxBackend:5500},
+{name:"Ally",maxFe:115,maxTotal:130,maxBackend:5000},
+{name:"Chase",maxFe:110,maxTotal:125,maxBackend:4500}
 ];
 
-let lenders=JSON.parse(localStorage.getItem("ltv_lenders_v3"))||defaultLenders;
-
-const ids=["dealName","score","book","sell","fees","rebate","cash","equity","neg","backend","term","miles","income","debt","payment"];
-ids.forEach(id=>document.getElementById(id).addEventListener("input",calc));
-
-function n(id){return parseFloat(String(document.getElementById(id).value).replace(/,/g,""))||0}
-function v(id){return document.getElementById(id).value}
-function money(x){return x.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0})}
-function pct(x){return isFinite(x)?x.toFixed(1)+"%":"0%"}
-function change(id,amt){document.getElementById(id).value=n(id)+amt;calc()}
-function setClass(el,val){el.className="big"; if(val<100)el.classList.add("green"); else if(val<115)el.classList.add("yellow"); else if(val<125)el.classList.add("orange"); else el.classList.add("red")}
-
-function dealData(){
- const book=n("book"), adjusted=n("sell")+n("fees");
- const frontend=adjusted-n("rebate")-n("cash")-n("equity")+n("neg");
- const total=frontend+n("backend");
- const income=n("income"), payment=n("payment"), debt=n("debt");
- return{
-  dealName:v("dealName"),score:n("score"),book,adjusted,frontend,total,
-  feLtv:book?frontend/book*100:0,totalLtv:book?total/book*100:0,
-  backend:n("backend"),backendLoad:book?n("backend")/book*100:0,
-  neg:n("neg"),negLoad:book?n("neg")/book*100:0,
-  term:n("term"),miles:n("miles"),income,debt,payment,
-  pti:income?payment/income*100:0,dti:income?(debt+payment)/income*100:0
- }
+function showTab(id){
+document.querySelectorAll(".card").forEach(x=>x.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+event.target.classList.add("active");
 }
 
-function scoreLender(l,d){
- let s=100, notes=[];
- if(d.score<l.minScore){s-=25;notes.push("score below min")}
- if(d.feLtv>l.maxFe){s-=20;notes.push("FE LTV over cap")}
- if(d.totalLtv>l.maxTotal){s-=20;notes.push("Total LTV over cap")}
- if(d.backend>l.maxBackend){s-=15;notes.push("backend over cap")}
- if(d.term>l.maxTerm){s-=10;notes.push("term too long")}
- if(d.miles>l.maxMiles){s-=10;notes.push("miles too high")}
- if(d.pti>l.maxPti){s-=10;notes.push("PTI too high")}
- if(d.dti>l.maxDti){s-=10;notes.push("DTI too high")}
- return {...l,score:Math.max(0,s),notes}
+function loadLenders(){
+let sel=document.getElementById("target");
+sel.innerHTML=lenders.map((l,i)=>`<option value="${i}">${l.name}</option>`).join("");
+document.getElementById("lenderList").innerHTML=lenders.map(l=>`${l.name} | FE:${l.maxFe}% | Total:${l.maxTotal}% | Backend:${l.maxBackend}`).join("<br>");
 }
 
 function calc(){
- const d=dealData();
- document.getElementById("adjusted").textContent=money(d.adjusted);
- document.getElementById("frontendAmt").textContent=money(d.frontend);
- document.getElementById("totalAmt").textContent=money(d.total);
- document.getElementById("pti").textContent=pct(d.pti);
- document.getElementById("dti").textContent=pct(d.dti);
- document.getElementById("feLtv").textContent=pct(d.feLtv);
- document.getElementById("totalLtv").textContent=pct(d.totalLtv);
- document.getElementById("backendLoad").textContent=pct(d.backendLoad);
- document.getElementById("negLoad").textContent=pct(d.negLoad);
- setClass(document.getElementById("feLtv"),d.feLtv); setClass(document.getElementById("totalLtv"),d.totalLtv);
+let book=+book.value;
+let adjusted=+sell.value+ +fees.value;
+let frontend=adjusted- +rebate.value- +cash.value+ +neg.value;
+let total=frontend+ +backend.value;
 
- const status=document.getElementById("status"), reco=document.getElementById("reco");
- if(d.totalLtv<100){status.className="status green";status.textContent="CLEAN DEAL";reco.innerHTML="Strong structure. Backend room looks comfortable."}
- else if(d.totalLtv<115){status.className="status yellow";status.textContent="WORKABLE";reco.innerHTML="Good structure. Watch backend and lender-specific caps."}
- else if(d.totalLtv<125){status.className="status orange";status.textContent="LENDER DEPENDENT";reco.innerHTML="Lender selection matters. Cash, book support, or backend control may decide this."}
- else{status.className="status red";status.textContent="HIGH-RISK STRUCTURE";reco.innerHTML="Needs work. Add cash, reduce backend, remove negative equity, lower price, or use high-advance lender."}
+let fe=frontend/book*100;
+let tot=total/book*100;
 
- const ranked=lenders.map(l=>scoreLender(l,d)).sort((a,b)=>b.score-a.score);
- const best=ranked[0]||{}, backup=ranked[1]||{}, avoid=ranked[ranked.length-1]||{};
- document.getElementById("bestName").textContent=best.name||"-"; document.getElementById("bestScore").textContent=(best.score??0)+"/100";
- document.getElementById("backupName").textContent=backup.name||"-"; document.getElementById("backupScore").textContent=(backup.score??0)+"/100";
- document.getElementById("avoidName").textContent=avoid.name||"-"; document.getElementById("avoidScore").textContent=(avoid.score??0)+"/100";
+feLtv.innerText=fe.toFixed(1)+"%";
+totalLtv.innerText=tot.toFixed(1)+"%";
 
- document.getElementById("lenderNotes").innerHTML=`<strong>${best.name||"-"}</strong> is the best match.<br>
- Aggression: <strong>${best.aggression||"-"}</strong><br>
- FE Cap: <strong>${best.maxFe||0}%</strong> | Total Cap: <strong>${best.maxTotal||0}%</strong> | Backend Cap: <strong>${money(best.maxBackend||0)}</strong><br><br>
- ${best.notes?.length?"<span class='warning'>Watch:</span> "+best.notes.join(", "):"<span class='ok'>No major warnings.</span>"}`;
+let l=lenders[target.value];
+backendRoom.innerText="$"+(l.maxBackend-backend.value);
+cashNeeded.innerText="$"+Math.max(0,total-(book*(l.maxTotal/100)));
 
- document.getElementById("rankTable").innerHTML="<tr><th>Lender</th><th>Score</th><th>Notes</th></tr>"+
- ranked.map(x=>`<tr><td>${x.name}</td><td>${x.score}</td><td>${x.notes.join(", ")||"OK"}</td></tr>`).join("");
-
- let notes=[];
- if(best.name){
-  if(d.feLtv>best.maxFe)notes.push(`Reduce front-end amount by about ${money(d.frontend-(d.book*best.maxFe/100))} to fit ${best.name} FE cap.`);
-  if(d.totalLtv>best.maxTotal)notes.push(`Reduce total amount financed by about ${money(d.total-(d.book*best.maxTotal/100))} to fit ${best.name} total cap.`);
-  if(d.backend>best.maxBackend)notes.push(`Backend is ${money(d.backend-best.maxBackend)} over ${best.name} cap.`);
-  if(d.pti>best.maxPti)notes.push(`PTI is high. Lower payment, extend term if allowed, or add cash.`);
-  if(d.dti>best.maxDti)notes.push(`DTI is high. Verify income or choose a more aggressive lender.`);
- }
- if(!notes.length)notes.push("Submit structure looks solid based on saved lender rules.");
- document.getElementById("approvalNotes").innerHTML=notes.map(x=>"• "+x).join("<br>");
+recapBox.value=
+`Front LTV: ${fe.toFixed(1)}%
+Total LTV: ${tot.toFixed(1)}%
+Best Lender: ${l.name}`;
 }
 
-function populateLenders(){
- const sel=document.getElementById("lenderSelect");
- sel.innerHTML=lenders.map((l,i)=>`<option value="${i}">${l.name}</option>`).join("");
- loadLenderForm();
-}
-function loadLenderForm(){
- const l=lenders[document.getElementById("lenderSelect").value]||lenders[0];
- if(!l)return;
- ["name","maxFe","maxTotal","maxBackend","maxTerm","maxMiles","minScore","maxPti","maxDti","aggression"].forEach(k=>document.getElementById("l_"+k).value=l[k]);
-}
-function saveLender(){
- const i=document.getElementById("lenderSelect").value;
- lenders[i]={name:v("l_name"),maxFe:n("l_maxFe"),maxTotal:n("l_maxTotal"),maxBackend:n("l_maxBackend"),maxTerm:n("l_maxTerm"),maxMiles:n("l_maxMiles"),minScore:n("l_minScore"),maxPti:n("l_maxPti"),maxDti:n("l_maxDti"),aggression:v("l_aggression")};
- localStorage.setItem("ltv_lenders_v3",JSON.stringify(lenders)); populateLenders(); calc();
-}
-function addLender(){
- lenders.push({name:"New Lender",maxFe:110,maxTotal:125,maxBackend:4000,maxTerm:72,maxMiles:100000,minScore:640,maxPti:15,maxDti:45,aggression:"Medium"});
- localStorage.setItem("ltv_lenders_v3",JSON.stringify(lenders)); populateLenders(); document.getElementById("lenderSelect").value=lenders.length-1; loadLenderForm(); calc();
-}
-function deleteLender(){
- if(lenders.length<=1)return alert("Keep at least one lender.");
- lenders.splice(document.getElementById("lenderSelect").value,1);
- localStorage.setItem("ltv_lenders_v3",JSON.stringify(lenders)); populateLenders(); calc();
-}
-function resetLenders(){
- if(confirm("Reset lender database to starter values?")){
-  lenders=defaultLenders; localStorage.setItem("ltv_lenders_v3",JSON.stringify(lenders)); populateLenders(); calc();
- }
+function structureDeal(){
+alert("Adjust cash, backend, or price to fit lender caps.");
 }
 
-function bestStructure(){
- const d=dealData(), best=lenders.map(l=>scoreLender(l,d)).sort((a,b)=>b.score-a.score)[0];
- let msg=`Best target lender: ${best.name}\n\n`;
- let fixes=[];
- if(d.totalLtv>best.maxTotal)fixes.push(`Reduce total amount financed by ${money(d.total-(d.book*best.maxTotal/100))}`);
- if(d.feLtv>best.maxFe)fixes.push(`Reduce front-end amount by ${money(d.frontend-(d.book*best.maxFe/100))}`);
- if(d.backend>best.maxBackend)fixes.push(`Cut backend by ${money(d.backend-best.maxBackend)}`);
- if(!fixes.length)fixes.push("Current structure fits starter caps for this lender.");
- alert(msg+fixes.join("\n"));
+function copyRecap(){
+navigator.clipboard.writeText(recapBox.value);
+alert("Copied");
 }
 
-function recap(){
- const d=dealData(), ranked=lenders.map(l=>scoreLender(l,d)).sort((a,b)=>b.score-a.score), best=ranked[0], backup=ranked[1];
- return `DEAL RECAP - ${d.dealName}
-
-Front-End Amount: ${money(d.frontend)}
-Total Amount Financed: ${money(d.total)}
-Front-End LTV: ${pct(d.feLtv)}
-Total LTV: ${pct(d.totalLtv)}
-Backend Load: ${pct(d.backendLoad)}
-Negative Equity Load: ${pct(d.negLoad)}
-PTI: ${pct(d.pti)}
-DTI: ${pct(d.dti)}
-
-Best Lender: ${best.name} (${best.score}/100)
-Backup Lender: ${backup?.name||"-"} (${backup?.score||0}/100)
-
-Approval Notes:
-${document.getElementById("approvalNotes").innerText}
-
-Manual Notes:
-${v("manualNotes")}`;
-}
-function copyRecap(){navigator.clipboard.writeText(recap());alert("Recap copied.")}
-function downloadRecap(){
- const blob=new Blob([recap()],{type:"text/plain"}), a=document.createElement("a");
- a.href=URL.createObjectURL(blob); a.download=`Deal Recap - ${v("dealName")||"Untitled"}.txt`; a.click();
-}
-function saveDeal(){
- const data={}; ids.forEach(id=>data[id]=v(id)); data.manualNotes=v("manualNotes");
- localStorage.setItem("ltv_saved_deal_v3",JSON.stringify(data)); alert("Deal saved in this browser.");
-}
-function loadDeal(){
- const data=JSON.parse(localStorage.getItem("ltv_saved_deal_v3")||"{}");
- Object.keys(data).forEach(k=>{if(document.getElementById(k))document.getElementById(k).value=data[k]});
- calc();
-}
-
-populateLenders();
+loadLenders();
 calc();
 </script>
+
 </body>
 </html>
