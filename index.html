@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CDK LTV Structure V1</title>
+
+<style>
+:root{
+  --bg:#050607;
+  --panel:#101317;
+  --panel2:#171b21;
+  --line:#2b313a;
+  --text:#f4f7fb;
+  --muted:#9ca8b6;
+  --green:#30d158;
+  --yellow:#ffd60a;
+  --orange:#ff9f0a;
+  --red:#ff453a;
+  --blue:#0a84ff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#18202b 0%,#050607 42%);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.app{
+  max-width:1500px;
+  margin:auto;
+  padding:18px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.badge{
+  background:#0b2f55;
+  color:#9ed0ff;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  border:1px solid #164a7d;
+}
+
+.monitor{
+  background:#07090c;
+  border:2px solid #29313b;
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.65);
+}
+
+.topbar{
+  background:#1b2027;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 14px;
+  display:flex;
+  justify-content:space-between;
+  color:#c8d3df;
+  font-size:13px;
+  margin-bottom:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:14px;
+}
+
+.card{
+  background:linear-gradient(180deg,var(--panel),#0a0d11);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
+}
+
+.card h2{
+  margin:0 0 14px;
+  font-size:18px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:10px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 170px;
+  gap:10px;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+label{
+  color:#cbd5e1;
+  font-size:14px;
+}
+
+input{
+  width:100%;
+  background:#05070a;
+  border:1px solid #343b46;
+  color:white;
+  padding:12px;
+  border-radius:8px;
+  font-size:16px;
+  text-align:right;
+}
+
+input:focus{
+  outline:none;
+  border-color:var(--blue);
+  box-shadow:0 0 0 2px rgba(10,132,255,.25);
+}
+
+.total{
+  background:#141a22;
+  border:1px solid #38424f;
+  border-radius:10px;
+  padding:12px;
+  margin:14px 0;
+}
+
+.total-line{
+  display:flex;
+  justify-content:space-between;
+  font-size:17px;
+  margin:8px 0;
+}
+
+.big{
+  font-size:42px;
+  font-weight:900;
+}
+
+.metric{
+  background:var(--panel2);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:12px;
+}
+
+.metric-title{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+.status{
+  padding:14px;
+  border-radius:12px;
+  font-weight:900;
+  text-align:center;
+  margin-top:12px;
+  font-size:20px;
+}
+
+.green{color:var(--green)}
+.yellow{color:var(--yellow)}
+.orange{color:var(--orange)}
+.red{color:var(--red)}
+
+.status.green{background:rgba(48,209,88,.12);border:1px solid var(--green)}
+.status.yellow{background:rgba(255,214,10,.12);border:1px solid var(--yellow)}
+.status.orange{background:rgba(255,159,10,.12);border:1px solid var(--orange)}
+.status.red{background:rgba(255,69,58,.12);border:1px solid var(--red)}
+
+.reco{
+  background:#080b0f;
+  border:1px dashed #3b4654;
+  border-radius:12px;
+  padding:14px;
+  color:#d8e2ed;
+  line-height:1.45;
+  margin-top:12px;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:14px;
+}
+
+button{
+  border:1px solid #334155;
+  background:#111827;
+  color:#e5edf7;
+  border-radius:10px;
+  padding:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#182231;
+}
+
+.footer{
+  color:#7d8794;
+  font-size:12px;
+  margin-top:12px;
+  text-align:center;
+}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .buttons{grid-template-columns:1fr 1fr}
+  .big{font-size:34px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <div class="header">
+    <div class="logo">CDK LTV STRUCTURE V1</div>
+    <div class="badge">P SCREEN / G SCREEN LIVE VIEW</div>
+  </div>
+
+  <div class="monitor">
+    <div class="topbar">
+      <div>CDK Global Reflections Style View</div>
+      <div>Deal Structure / Cash Screen</div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h2>P SCREEN — DEAL STRUCTURE</h2>
+
+        <div class="row"><label>Book Value / Clean Retail</label><input id="book" value="25000"></div>
+        <div class="row"><label>Selling Price</label><input id="sell" value="27995"></div>
+        <div class="row"><label>Fees Amount</label><input id="fees" value="1200"></div>
+        <div class="row"><label>Rebate / Discount</label><input id="rebate" value="1500"></div>
+        <div class="row"><label>Cash Down</label><input id="cash" value="2000"></div>
+        <div class="row"><label>Trade Equity / Negative Equity</label><input id="trade" value="-3000"></div>
+        <div class="row"><label>Backend Products</label><input id="backend" value="4200"></div>
+        <div class="row"><label>Lender Max Advance %</label><input id="cap" value="120"></div>
+
+        <div class="total">
+          <div class="total-line"><span>Adjusted Price</span><strong id="adjusted">$0</strong></div>
+          <div class="total-line"><span>Front-End Amount</span><strong id="frontendAmt">$0</strong></div>
+          <div class="total-line"><span>Total Amount Financed</span><strong id="totalAmt">$0</strong></div>
+        </div>
+
+        <div class="buttons">
+          <button onclick="change('backend',-500)">-$500 Backend</button>
+          <button onclick="change('cash',1000)">+$1,000 Cash</button>
+          <button onclick="change('fees',-250)">-$250 Fees</button>
+          <button onclick="resetDeal()">Reset</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>G SCREEN — LIVE LTV INTELLIGENCE</h2>
+
+        <div class="metric">
+          <div class="metric-title">Front-End LTV</div>
+          <div class="big" id="feLtv">0%</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-title">Total LTV</div>
+          <div class="big" id="totalLtv">0%</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-title">Backend Load</div>
+          <div id="backendLoad">0%</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-title">Negative Equity Load</div>
+          <div id="negLoad">0%</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-title">Remaining Backend Room</div>
+          <div id="room">$0</div>
+        </div>
+
+        <div id="status" class="status green">CLEAN</div>
+
+        <div class="reco" id="reco">
+          Structure looks good.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    Built for live deal structuring visibility while working CDK P Screen / G Screen.
+  </div>
+</div>
+
+<script>
+const ids=["book","sell","fees","rebate","cash","trade","backend","cap"];
+ids.forEach(id=>document.getElementById(id).addEventListener("input",calc));
+
+function num(id){
+  return parseFloat(document.getElementById(id).value.replace(/,/g,"")) || 0;
+}
+
+function money(n){
+  return n.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
+}
+
+function pct(n){
+  return isFinite(n) ? n.toFixed(1)+"%" : "0%";
+}
+
+function setClass(el,val){
+  el.className="big";
+  if(val < 100) el.classList.add("green");
+  else if(val < 115) el.classList.add("yellow");
+  else if(val < 125) el.classList.add("orange");
+  else el.classList.add("red");
+}
+
+function calc(){
+  const book=num("book");
+  const sell=num("sell");
+  const fees=num("fees");
+  const rebate=num("rebate");
+  const cash=num("cash");
+  const trade=num("trade");
+  const backend=num("backend");
+  const cap=num("cap");
+
+  const adjusted=sell+fees;
+  const negEquity = trade < 0 ? Math.abs(trade) : 0;
+  const positiveEquity = trade > 0 ? trade : 0;
+
+  const frontend=adjusted-rebate-cash-positiveEquity+negEquity;
+  const total=frontend+backend;
+
+  const feLtv=book ? frontend/book*100 : 0;
+  const totalLtv=book ? total/book*100 : 0;
+  const backendLoad=book ? backend/book*100 : 0;
+  const negLoad=book ? negEquity/book*100 : 0;
+
+  const maxTotal=book*(cap/100);
+  const remaining=maxTotal-frontend;
+
+  document.getElementById("adjusted").textContent=money(adjusted);
+  document.getElementById("frontendAmt").textContent=money(frontend);
+  document.getElementById("totalAmt").textContent=money(total);
+
+  document.getElementById("feLtv").textContent=pct(feLtv);
+  document.getElementById("totalLtv").textContent=pct(totalLtv);
+  document.getElementById("backendLoad").textContent=pct(backendLoad);
+  document.getElementById("negLoad").textContent=pct(negLoad);
+  document.getElementById("room").textContent=money(remaining);
+
+  setClass(document.getElementById("feLtv"),feLtv);
+  setClass(document.getElementById("totalLtv"),totalLtv);
+
+  const status=document.getElementById("status");
+  const reco=document.getElementById("reco");
+
+  if(totalLtv < 100){
+    status.className="status green";
+    status.textContent="CLEAN DEAL";
+    reco.innerHTML="Strong structure. You have room to hold backend and still stay bank-friendly.";
+  }else if(totalLtv < 115){
+    status.className="status yellow";
+    status.textContent="WORKABLE";
+    reco.innerHTML="Good structure. Watch backend, but this should be lender-friendly with decent credit and income.";
+  }else if(totalLtv < 125){
+    status.className="status orange";
+    status.textContent="LENDER DEPENDENT";
+    reco.innerHTML="This is where lender selection matters. Consider more cash, less backend, stronger book support, or an aggressive lender.";
+  }else{
+    status.className="status red";
+    status.textContent="HIGH-RISK STRUCTURE";
+    reco.innerHTML="Likely needs restructuring. Add cash, reduce backend, remove negative equity, lower price, or move to a high-advance lender.";
+  }
+
+  if(remaining < backend){
+    reco.innerHTML += "<br><br><strong>Warning:</strong> Backend exceeds remaining advance room based on your lender cap.";
+  }
+}
+
+function change(id,amount){
+  const field=document.getElementById(id);
+  field.value=num(id)+amount;
+  calc();
+}
+
+function resetDeal(){
+  document.getElementById("book").value=25000;
+  document.getElementById("sell").value=27995;
+  document.getElementById("fees").value=1200;
+  document.getElementById("rebate").value=1500;
+  document.getElementById("cash").value=2000;
+  document.getElementById("trade").value=-3000;
+  document.getElementById("backend").value=4200;
+  document.getElementById("cap").value=120;
+  calc();
+}
+
+calc();
+</script>
+</body>
+</html>
