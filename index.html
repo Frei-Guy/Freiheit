@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CDK LTV Structure V1</title>
+<title>CDK LTV Approval Weapon V2</title>
 
 <style>
 :root{
@@ -19,98 +19,25 @@
   --red:#ff453a;
   --blue:#0a84ff;
 }
-
 *{box-sizing:border-box}
-
 body{
   margin:0;
   background:radial-gradient(circle at top,#18202b 0%,#050607 42%);
   color:var(--text);
   font-family:Arial,Helvetica,sans-serif;
 }
-
-.app{
-  max-width:1500px;
-  margin:auto;
-  padding:18px;
-}
-
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:16px;
-}
-
-.logo{
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.badge{
-  background:#0b2f55;
-  color:#9ed0ff;
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:13px;
-  border:1px solid #164a7d;
-}
-
-.monitor{
-  background:#07090c;
-  border:2px solid #29313b;
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 20px 60px rgba(0,0,0,.65);
-}
-
-.topbar{
-  background:#1b2027;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:10px 14px;
-  display:flex;
-  justify-content:space-between;
-  color:#c8d3df;
-  font-size:13px;
-  margin-bottom:14px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:14px;
-}
-
-.card{
-  background:linear-gradient(180deg,var(--panel),#0a0d11);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:16px;
-}
-
-.card h2{
-  margin:0 0 14px;
-  font-size:18px;
-  border-bottom:1px solid var(--line);
-  padding-bottom:10px;
-}
-
-.row{
-  display:grid;
-  grid-template-columns:1fr 170px;
-  gap:10px;
-  align-items:center;
-  margin-bottom:10px;
-}
-
-label{
-  color:#cbd5e1;
-  font-size:14px;
-}
-
-input{
+.app{max-width:1550px;margin:auto;padding:18px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}
+.badge{background:#0b2f55;color:#9ed0ff;padding:8px 12px;border-radius:999px;font-size:13px;border:1px solid #164a7d}
+.monitor{background:#07090c;border:2px solid #29313b;border-radius:18px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.65)}
+.topbar{background:#1b2027;border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;color:#c8d3df;font-size:13px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:linear-gradient(180deg,var(--panel),#0a0d11);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card h2{margin:0 0 14px;font-size:18px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.row{display:grid;grid-template-columns:1fr 170px;gap:10px;align-items:center;margin-bottom:10px}
+label{color:#cbd5e1;font-size:14px}
+input,select{
   width:100%;
   background:#05070a;
   border:1px solid #343b46;
@@ -120,108 +47,39 @@ input{
   font-size:16px;
   text-align:right;
 }
-
-input:focus{
-  outline:none;
-  border-color:var(--blue);
-  box-shadow:0 0 0 2px rgba(10,132,255,.25);
-}
-
-.total{
-  background:#141a22;
-  border:1px solid #38424f;
-  border-radius:10px;
-  padding:12px;
-  margin:14px 0;
-}
-
-.total-line{
-  display:flex;
-  justify-content:space-between;
-  font-size:17px;
-  margin:8px 0;
-}
-
-.big{
-  font-size:42px;
-  font-weight:900;
-}
-
-.metric{
-  background:var(--panel2);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:14px;
-  margin-bottom:12px;
-}
-
-.metric-title{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:6px;
-}
-
-.status{
-  padding:14px;
-  border-radius:12px;
-  font-weight:900;
-  text-align:center;
-  margin-top:12px;
-  font-size:20px;
-}
-
+select{text-align:left}
+input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 2px rgba(10,132,255,.25)}
+.total{background:#141a22;border:1px solid #38424f;border-radius:10px;padding:12px;margin:14px 0}
+.total-line{display:flex;justify-content:space-between;font-size:17px;margin:8px 0}
+.big{font-size:40px;font-weight:900}
+.metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.metric-title{color:var(--muted);font-size:13px;margin-bottom:6px}
+.status{padding:14px;border-radius:12px;font-weight:900;text-align:center;margin-top:12px;font-size:20px}
 .green{color:var(--green)}
 .yellow{color:var(--yellow)}
 .orange{color:var(--orange)}
 .red{color:var(--red)}
-
 .status.green{background:rgba(48,209,88,.12);border:1px solid var(--green)}
 .status.yellow{background:rgba(255,214,10,.12);border:1px solid var(--yellow)}
 .status.orange{background:rgba(255,159,10,.12);border:1px solid var(--orange)}
 .status.red{background:rgba(255,69,58,.12);border:1px solid var(--red)}
-
-.reco{
-  background:#080b0f;
-  border:1px dashed #3b4654;
-  border-radius:12px;
-  padding:14px;
-  color:#d8e2ed;
-  line-height:1.45;
-  margin-top:12px;
-}
-
-.buttons{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-top:14px;
-}
-
-button{
-  border:1px solid #334155;
-  background:#111827;
-  color:#e5edf7;
-  border-radius:10px;
-  padding:12px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-button:hover{
-  background:#182231;
-}
-
-.footer{
-  color:#7d8794;
-  font-size:12px;
-  margin-top:12px;
-  text-align:center;
-}
-
-@media(max-width:900px){
+.reco{background:#080b0f;border:1px dashed #3b4654;border-radius:12px;padding:14px;color:#d8e2ed;line-height:1.45;margin-top:12px}
+.buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+button{border:1px solid #334155;background:#111827;color:#e5edf7;border-radius:10px;padding:12px;font-weight:800;cursor:pointer}
+button:hover{background:#182231}
+.lenderBox{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.lender{background:#080b0f;border:1px solid #344052;border-radius:12px;padding:12px}
+.lender strong{display:block;font-size:16px;margin-bottom:6px}
+.score{font-size:30px;font-weight:900}
+.warning{color:var(--orange)}
+.danger{color:var(--red)}
+.ok{color:var(--green)}
+.footer{color:#7d8794;font-size:12px;margin-top:12px;text-align:center}
+@media(max-width:950px){
   .grid{grid-template-columns:1fr}
   .row{grid-template-columns:1fr}
   .buttons{grid-template-columns:1fr 1fr}
+  .lenderBox{grid-template-columns:1fr}
   .big{font-size:34px}
 }
 </style>
@@ -229,16 +87,15 @@ button:hover{
 
 <body>
 <div class="app">
-
   <div class="header">
-    <div class="logo">CDK LTV STRUCTURE V1</div>
-    <div class="badge">P SCREEN / G SCREEN LIVE VIEW</div>
+    <div class="logo">CDK APPROVAL WEAPON V2</div>
+    <div class="badge">LTV / STRUCTURE / LENDER MATCH</div>
   </div>
 
   <div class="monitor">
     <div class="topbar">
       <div>CDK Global Reflections Style View</div>
-      <div>Deal Structure / Cash Screen</div>
+      <div>Deal Approval Structure Tool</div>
     </div>
 
     <div class="grid">
@@ -246,26 +103,34 @@ button:hover{
       <div class="card">
         <h2>P SCREEN — DEAL STRUCTURE</h2>
 
+        <div class="row"><label>Credit Score</label><input id="score" value="680"></div>
         <div class="row"><label>Book Value / Clean Retail</label><input id="book" value="25000"></div>
         <div class="row"><label>Selling Price</label><input id="sell" value="27995"></div>
         <div class="row"><label>Fees Amount</label><input id="fees" value="1200"></div>
         <div class="row"><label>Rebate / Discount</label><input id="rebate" value="1500"></div>
         <div class="row"><label>Cash Down</label><input id="cash" value="2000"></div>
-        <div class="row"><label>Trade Equity / Negative Equity</label><input id="trade" value="-3000"></div>
+        <div class="row"><label>Trade Equity</label><input id="equity" value="0"></div>
+        <div class="row"><label>Negative Equity</label><input id="neg" value="3000"></div>
         <div class="row"><label>Backend Products</label><input id="backend" value="4200"></div>
-        <div class="row"><label>Lender Max Advance %</label><input id="cap" value="120"></div>
+        <div class="row"><label>Term</label><input id="term" value="72"></div>
+        <div class="row"><label>Mileage</label><input id="miles" value="35000"></div>
+        <div class="row"><label>Monthly Income</label><input id="income" value="6500"></div>
+        <div class="row"><label>Total Monthly Debt</label><input id="debt" value="1800"></div>
+        <div class="row"><label>Estimated Payment</label><input id="payment" value="543"></div>
 
         <div class="total">
           <div class="total-line"><span>Adjusted Price</span><strong id="adjusted">$0</strong></div>
           <div class="total-line"><span>Front-End Amount</span><strong id="frontendAmt">$0</strong></div>
           <div class="total-line"><span>Total Amount Financed</span><strong id="totalAmt">$0</strong></div>
+          <div class="total-line"><span>PTI</span><strong id="pti">0%</strong></div>
+          <div class="total-line"><span>DTI</span><strong id="dti">0%</strong></div>
         </div>
 
         <div class="buttons">
           <button onclick="change('backend',-500)">-$500 Backend</button>
           <button onclick="change('cash',1000)">+$1,000 Cash</button>
-          <button onclick="change('fees',-250)">-$250 Fees</button>
-          <button onclick="resetDeal()">Reset</button>
+          <button onclick="change('neg',-1000)">-$1,000 Neg Eq</button>
+          <button onclick="bestStructure()">Best Structure</button>
         </div>
       </div>
 
@@ -292,130 +157,193 @@ button:hover{
           <div id="negLoad">0%</div>
         </div>
 
-        <div class="metric">
-          <div class="metric-title">Remaining Backend Room</div>
-          <div id="room">$0</div>
-        </div>
-
         <div id="status" class="status green">CLEAN</div>
 
-        <div class="reco" id="reco">
-          Structure looks good.
+        <div class="reco" id="reco">Structure looks good.</div>
+      </div>
+
+      <div class="card">
+        <h2>LENDER MATCH — APPROVAL RANKING</h2>
+        <div class="lenderBox">
+          <div class="lender">
+            <strong>Best Lender</strong>
+            <div id="bestName">-</div>
+            <div class="score" id="bestScore">0</div>
+          </div>
+          <div class="lender">
+            <strong>Backup Lender</strong>
+            <div id="backupName">-</div>
+            <div class="score" id="backupScore">0</div>
+          </div>
+          <div class="lender">
+            <strong>Avoid / Toughest</strong>
+            <div id="avoidName">-</div>
+            <div class="score" id="avoidScore">0</div>
+          </div>
         </div>
+
+        <div class="reco" id="lenderNotes"></div>
+      </div>
+
+      <div class="card">
+        <h2>APPROVAL NOTES</h2>
+        <div class="reco" id="approvalNotes"></div>
       </div>
 
     </div>
   </div>
 
   <div class="footer">
-    Built for live deal structuring visibility while working CDK P Screen / G Screen.
+    V2 starter lender logic. Replace lender values later with your real bank guidelines.
   </div>
 </div>
 
 <script>
-const ids=["book","sell","fees","rebate","cash","trade","backend","cap"];
+const lenders=[
+  {name:"Capital One",maxFe:120,maxTotal:135,maxBackend:5500,maxTerm:75,maxMiles:125000,minScore:600,maxPti:18,maxDti:55,aggression:"High"},
+  {name:"Ally",maxFe:115,maxTotal:130,maxBackend:5000,maxTerm:75,maxMiles:120000,minScore:620,maxPti:17,maxDti:50,aggression:"Medium-High"},
+  {name:"Chase",maxFe:110,maxTotal:125,maxBackend:4500,maxTerm:72,maxMiles:100000,minScore:660,maxPti:15,maxDti:45,aggression:"Medium"},
+  {name:"Wells Fargo",maxFe:115,maxTotal:128,maxBackend:4500,maxTerm:72,maxMiles:110000,minScore:640,maxPti:16,maxDti:50,aggression:"Medium"},
+  {name:"Santander",maxFe:125,maxTotal:140,maxBackend:5000,maxTerm:75,maxMiles:130000,minScore:580,maxPti:20,maxDti:60,aggression:"Very High"},
+  {name:"Exeter",maxFe:125,maxTotal:140,maxBackend:4500,maxTerm:72,maxMiles:130000,minScore:560,maxPti:20,maxDti:60,aggression:"Very High"},
+  {name:"UW Credit Union",maxFe:105,maxTotal:120,maxBackend:3500,maxTerm:72,maxMiles:100000,minScore:680,maxPti:14,maxDti:42,aggression:"Conservative"},
+  {name:"Associated Bank",maxFe:110,maxTotal:125,maxBackend:4000,maxTerm:72,maxMiles:100000,minScore:660,maxPti:15,maxDti:45,aggression:"Medium"}
+];
+
+const ids=["score","book","sell","fees","rebate","cash","equity","neg","backend","term","miles","income","debt","payment"];
 ids.forEach(id=>document.getElementById(id).addEventListener("input",calc));
 
-function num(id){
-  return parseFloat(document.getElementById(id).value.replace(/,/g,"")) || 0;
-}
-
-function money(n){
-  return n.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
-}
-
-function pct(n){
-  return isFinite(n) ? n.toFixed(1)+"%" : "0%";
-}
+function num(id){return parseFloat(document.getElementById(id).value.replace(/,/g,""))||0}
+function money(n){return n.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0})}
+function pct(n){return isFinite(n)?n.toFixed(1)+"%":"0%"}
+function change(id,amount){document.getElementById(id).value=num(id)+amount;calc()}
 
 function setClass(el,val){
   el.className="big";
-  if(val < 100) el.classList.add("green");
-  else if(val < 115) el.classList.add("yellow");
-  else if(val < 125) el.classList.add("orange");
+  if(val<100)el.classList.add("green");
+  else if(val<115)el.classList.add("yellow");
+  else if(val<125)el.classList.add("orange");
   else el.classList.add("red");
 }
 
-function calc(){
-  const book=num("book");
-  const sell=num("sell");
-  const fees=num("fees");
-  const rebate=num("rebate");
-  const cash=num("cash");
-  const trade=num("trade");
-  const backend=num("backend");
-  const cap=num("cap");
-
+function dealData(){
+  const book=num("book"), sell=num("sell"), fees=num("fees"), rebate=num("rebate"), cash=num("cash");
+  const equity=num("equity"), neg=num("neg"), backend=num("backend"), income=num("income"), debt=num("debt"), payment=num("payment");
   const adjusted=sell+fees;
-  const negEquity = trade < 0 ? Math.abs(trade) : 0;
-  const positiveEquity = trade > 0 ? trade : 0;
-
-  const frontend=adjusted-rebate-cash-positiveEquity+negEquity;
+  const frontend=adjusted-rebate-cash-equity+neg;
   const total=frontend+backend;
+  const feLtv=book?frontend/book*100:0;
+  const totalLtv=book?total/book*100:0;
+  const backendLoad=book?backend/book*100:0;
+  const negLoad=book?neg/book*100:0;
+  const pti=income?payment/income*100:0;
+  const dti=income?(debt+payment)/income*100:0;
+  return {book,sell,fees,rebate,cash,equity,neg,backend,income,debt,payment,adjusted,frontend,total,feLtv,totalLtv,backendLoad,negLoad,pti,dti,score:num("score"),term:num("term"),miles:num("miles")}
+}
 
-  const feLtv=book ? frontend/book*100 : 0;
-  const totalLtv=book ? total/book*100 : 0;
-  const backendLoad=book ? backend/book*100 : 0;
-  const negLoad=book ? negEquity/book*100 : 0;
+function scoreLender(l,d){
+  let score=100;
+  let notes=[];
 
-  const maxTotal=book*(cap/100);
-  const remaining=maxTotal-frontend;
+  if(d.score<l.minScore){score-=25;notes.push("score below minimum")}
+  if(d.feLtv>l.maxFe){score-=20;notes.push("front-end LTV over cap")}
+  if(d.totalLtv>l.maxTotal){score-=20;notes.push("total LTV over cap")}
+  if(d.backend>l.maxBackend){score-=15;notes.push("backend over cap")}
+  if(d.term>l.maxTerm){score-=10;notes.push("term too long")}
+  if(d.miles>l.maxMiles){score-=10;notes.push("miles too high")}
+  if(d.pti>l.maxPti){score-=10;notes.push("PTI too high")}
+  if(d.dti>l.maxDti){score-=10;notes.push("DTI too high")}
 
-  document.getElementById("adjusted").textContent=money(adjusted);
-  document.getElementById("frontendAmt").textContent=money(frontend);
-  document.getElementById("totalAmt").textContent=money(total);
+  if(score<0)score=0;
+  return {...l,score,notes};
+}
 
-  document.getElementById("feLtv").textContent=pct(feLtv);
-  document.getElementById("totalLtv").textContent=pct(totalLtv);
-  document.getElementById("backendLoad").textContent=pct(backendLoad);
-  document.getElementById("negLoad").textContent=pct(negLoad);
-  document.getElementById("room").textContent=money(remaining);
+function calc(){
+  const d=dealData();
 
-  setClass(document.getElementById("feLtv"),feLtv);
-  setClass(document.getElementById("totalLtv"),totalLtv);
+  document.getElementById("adjusted").textContent=money(d.adjusted);
+  document.getElementById("frontendAmt").textContent=money(d.frontend);
+  document.getElementById("totalAmt").textContent=money(d.total);
+  document.getElementById("pti").textContent=pct(d.pti);
+  document.getElementById("dti").textContent=pct(d.dti);
+
+  document.getElementById("feLtv").textContent=pct(d.feLtv);
+  document.getElementById("totalLtv").textContent=pct(d.totalLtv);
+  document.getElementById("backendLoad").textContent=pct(d.backendLoad);
+  document.getElementById("negLoad").textContent=pct(d.negLoad);
+
+  setClass(document.getElementById("feLtv"),d.feLtv);
+  setClass(document.getElementById("totalLtv"),d.totalLtv);
 
   const status=document.getElementById("status");
   const reco=document.getElementById("reco");
 
-  if(totalLtv < 100){
-    status.className="status green";
-    status.textContent="CLEAN DEAL";
-    reco.innerHTML="Strong structure. You have room to hold backend and still stay bank-friendly.";
-  }else if(totalLtv < 115){
-    status.className="status yellow";
-    status.textContent="WORKABLE";
-    reco.innerHTML="Good structure. Watch backend, but this should be lender-friendly with decent credit and income.";
-  }else if(totalLtv < 125){
-    status.className="status orange";
-    status.textContent="LENDER DEPENDENT";
-    reco.innerHTML="This is where lender selection matters. Consider more cash, less backend, stronger book support, or an aggressive lender.";
+  if(d.totalLtv<100){
+    status.className="status green"; status.textContent="CLEAN DEAL";
+    reco.innerHTML="Strong structure. Backend room looks comfortable.";
+  }else if(d.totalLtv<115){
+    status.className="status yellow"; status.textContent="WORKABLE";
+    reco.innerHTML="Good structure. Watch backend and lender-specific caps.";
+  }else if(d.totalLtv<125){
+    status.className="status orange"; status.textContent="LENDER DEPENDENT";
+    reco.innerHTML="Lender selection matters. This may need stronger book support, cash, or backend control.";
   }else{
-    status.className="status red";
-    status.textContent="HIGH-RISK STRUCTURE";
-    reco.innerHTML="Likely needs restructuring. Add cash, reduce backend, remove negative equity, lower price, or move to a high-advance lender.";
+    status.className="status red"; status.textContent="HIGH-RISK STRUCTURE";
+    reco.innerHTML="Needs structure work. Add cash, reduce backend, remove negative equity, or use a high-advance lender.";
   }
 
-  if(remaining < backend){
-    reco.innerHTML += "<br><br><strong>Warning:</strong> Backend exceeds remaining advance room based on your lender cap.";
+  const ranked=lenders.map(l=>scoreLender(l,d)).sort((a,b)=>b.score-a.score);
+  const best=ranked[0], backup=ranked[1], avoid=ranked[ranked.length-1];
+
+  document.getElementById("bestName").textContent=best.name;
+  document.getElementById("bestScore").textContent=best.score+"/100";
+  document.getElementById("backupName").textContent=backup.name;
+  document.getElementById("backupScore").textContent=backup.score+"/100";
+  document.getElementById("avoidName").textContent=avoid.name;
+  document.getElementById("avoidScore").textContent=avoid.score+"/100";
+
+  document.getElementById("lenderNotes").innerHTML=
+    `<strong>${best.name}</strong> is the best current match based on the starter lender database.<br><br>
+    Aggression: <strong>${best.aggression}</strong><br>
+    Max FE LTV: <strong>${best.maxFe}%</strong><br>
+    Max Total LTV: <strong>${best.maxTotal}%</strong><br>
+    Max Backend: <strong>${money(best.maxBackend)}</strong><br><br>
+    ${best.notes.length ? "<span class='warning'>Watch:</span> "+best.notes.join(", ") : "<span class='ok'>No major starter-rule warnings.</span>"}`;
+
+  let notes=[];
+  if(d.feLtv>best.maxFe) notes.push(`Reduce front-end amount by about ${money(d.frontend-(d.book*best.maxFe/100))} to fit ${best.name} FE cap.`);
+  if(d.totalLtv>best.maxTotal) notes.push(`Reduce total amount financed by about ${money(d.total-(d.book*best.maxTotal/100))} to fit ${best.name} total cap.`);
+  if(d.backend>best.maxBackend) notes.push(`Backend is ${money(d.backend-best.maxBackend)} over ${best.name} starter cap.`);
+  if(d.pti>best.maxPti) notes.push(`PTI is high. Lower payment, extend term if allowed, or add cash.`);
+  if(d.dti>best.maxDti) notes.push(`DTI is high. Verify income, remove debt if possible, or choose more aggressive lender.`);
+  if(d.score<best.minScore) notes.push(`Credit score is under ${best.name} starter minimum.`);
+
+  if(!notes.length){
+    notes.push("Submit structure looks solid based on starter rules.");
+    notes.push("Next upgrade should replace starter lender values with your real bank guidelines.");
   }
+
+  document.getElementById("approvalNotes").innerHTML=notes.map(x=>"• "+x).join("<br>");
 }
 
-function change(id,amount){
-  const field=document.getElementById(id);
-  field.value=num(id)+amount;
-  calc();
-}
+function bestStructure(){
+  const d=dealData();
+  const ranked=lenders.map(l=>scoreLender(l,d)).sort((a,b)=>b.score-a.score);
+  const best=ranked[0];
 
-function resetDeal(){
-  document.getElementById("book").value=25000;
-  document.getElementById("sell").value=27995;
-  document.getElementById("fees").value=1200;
-  document.getElementById("rebate").value=1500;
-  document.getElementById("cash").value=2000;
-  document.getElementById("trade").value=-3000;
-  document.getElementById("backend").value=4200;
-  document.getElementById("cap").value=120;
-  calc();
+  let message=`Best target lender: ${best.name}\\n\\n`;
+
+  const maxTotal=d.book*(best.maxTotal/100);
+  const overTotal=d.total-maxTotal;
+
+  if(overTotal>0){
+    message+=`To fit ${best.name}, reduce total amount financed by about ${money(overTotal)}.\\n`;
+    message+=`Fastest fixes: add cash, reduce backend, lower selling price, or remove negative equity.`;
+  }else{
+    message+=`This structure currently fits ${best.name}'s starter total LTV cap.`;
+  }
+
+  alert(message);
 }
 
 calc();
